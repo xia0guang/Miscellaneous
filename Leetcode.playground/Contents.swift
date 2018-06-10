@@ -22,7 +22,6 @@ import UIKit
  1. 1 <= root length <= 100
  1. 1 <= sentence words length <= 1000
 */
-
 func replaceWordsBasicBruteForce(_ dict: [String], _ sentence: String) -> String {
     let wordSet = Set(dict)
     var words = sentence.split(separator: " ")
@@ -509,4 +508,236 @@ func countArrangement(_ n: Int, _ result: inout Int, _ occupied: inout [Bool]) {
         }
     }
 }
-print(countArrangement(15))
+//print(countArrangement(15))
+
+/*:
+ 
+ ### Beautiful Arrangement II
+ 
+ Given two integers n and k, you need to construct a list which contains n different positive integers ranging from 1 to n and obeys the following requirement:
+ Suppose this list is [a1, a2, a3, ... , an], then the list [|a1 - a2|, |a2 - a3|, |a3 - a4|, ... , |an-1 - an|] has exactly k distinct integers.
+ 
+ If there are multiple answers, print any of them.
+ 
+ ````
+ Input: n = 3, k = 1
+ Output: [1, 2, 3]
+ ````
+ *Explanation*: The [1, 2, 3] has three different positive integers ranging from 1 to 3, and the [1, 1] has exactly 1 distinct integer: 1.
+ ````
+ Input: n = 3, k = 2
+ Output: [1, 3, 2]
+ ````
+ *Explanation*: The [1, 3, 2] has three different positive integers ranging from 1 to 3, and the [2, 1] has exactly 2 distinct integers: 1 and 2.
+ - Note:
+ The n and k are in the range 1 <= k < n <= 104.
+ */
+
+func constructArrayBacktracking(_ n: Int, _ k: Int) -> [Int] {
+    var result:[Int]?
+    var used = Set<Int>()
+    var diffs = [Int: Int]()
+    var arr = [Int]()
+    constructArrayBacktracking(n, k, &used, &arr, &result, &diffs)
+    return result ?? []
+}
+
+func constructArrayBacktracking(_ n: Int, _ k: Int, _ used: inout Set<Int>, _ arr: inout [Int], _ result: inout [Int]?, _ diffs: inout [Int: Int]) {
+    if k >= n {
+        return
+    }
+    
+    if used.count == n, diffs.count == k {
+        print("diffs: \(diffs)")
+        result = arr
+        return
+    }
+    
+    if diffs.count > k {
+        return
+    }
+    
+    for i in 1...n {
+        if result != nil {
+            break
+        }
+        
+        if !used.contains(i) {
+            arr.append(i)
+            if arr.count > 1 {
+                let diff = arr.last! - arr[arr.count - 2]
+                if diffs[diff] == nil {
+                    diffs[diff] = 1
+                } else {
+                    diffs[diff]! += 1
+                }
+            }
+            used.insert(i)
+            constructArrayBacktracking(n, k, &used, &arr, &result, &diffs)
+            if arr.count > 1 {
+                let diff = arr.last! - arr[arr.count - 2]
+                if diffs[diff] != nil {
+                    diffs[diff]! -= 1
+                }
+                if diffs[diff] == 0 {
+                    diffs.removeValue(forKey: diff)
+                }
+            }
+            used.remove(i)
+            arr.removeLast()
+        }
+    }
+}
+
+func constructArray(_ n: Int, _ k: Int) -> [Int] {
+    var result = [Int]()
+    //1 10 2 9 3 4 5 6 7 8 (n = 10, k = 5)
+    //10 1 9 2 3 4 5 6 7 8 (n = 10, k = 4)
+    var left = 1, right = n
+    var kk = k
+    if k%2 == 0 {
+        result.append(right)
+        right -= 1
+        kk -= 1
+    }
+    var addLeft: Bool = true
+    for i in 1 ... kk {
+        if addLeft {
+            result.append(left)
+            left += 1
+            addLeft = false
+        } else {
+            result.append(right)
+            right -= 1
+            addLeft = true
+        }
+    }
+    
+    print("left: \(left), right: \(right)")
+    
+    if left <= right {
+        for i in left ... right {
+            result.append(i)
+        }
+    }
+    
+    return result
+}
+
+/*
+let seq = constructArray(50, 49)
+print(seq)
+var diffs: Set<Int> = []
+seq.enumerated().forEach { (iter) in
+    if iter.offset < seq.count - 1 {
+        diffs.insert(abs(iter.element - seq[iter.offset + 1]) )
+    }
+}
+
+print(diffs)
+print("diffs count: \(diffs.count)")
+*/
+
+/*:
+ 
+ ### Remove Duplicates from Sorted Array
+ 
+ Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.
+ 
+ Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+ 
+ Example 1:
+ ````
+ Given nums = [1,1,2],
+ 
+ Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively.
+ 
+ It doesn't matter what you leave beyond the returned length.
+ ````
+ Example 2:
+ ````
+ Given nums = [0,0,1,1,1,2,2,3,3,4],
+ 
+ Your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively.
+ 
+ It doesn't matter what values are set beyond the returned length.
+ ````
+ Clarification:
+ ````
+ 
+ Confused why the returned value is an integer but your answer is an array?
+ 
+ Note that the input array is passed in by reference, which means modification to the input array will be known to the caller as well.
+ 
+ Internally you can think of this:
+ 
+ // nums is passed in by reference. (i.e., without making a copy)
+ int len = removeDuplicates(nums);
+ 
+ // any modification to nums in your function would be known by the caller.
+ // using the length returned by your function, it prints the first len elements.
+ for (int i = 0; i < len; i++) {
+ print(nums[i]);
+ }
+ ````
+ */
+
+func removeDuplicates(_ nums: inout [Int]) -> Int {
+    if nums.count < 2 {
+        return nums.count
+    }
+    
+    var len = 1
+    for i in 1..<nums.count {
+        if nums[i] != nums[len-1] {
+            nums[len] = nums[i]
+            len += 1
+        }
+    }
+    return len
+}
+/*
+var nums = [0,0,1,1,1,2,2,3,3,4]
+print(removeDuplicates(&nums))
+print(nums)
+ */
+
+/*:
+ ### Triangle
+ 
+ Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
+ 
+ For example, given the following triangle
+ ````
+ [
+ [2],
+ [3,4],
+ [6,5,7],
+ [4,1,8,3]
+ ]
+ The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
+ ````
+ 
+ - Note:
+ 
+ Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.
+ */
+
+func minimumTotal(_ triangle: [[Int]]) -> Int {
+    guard triangle.count > 0, triangle[0].count > 0 else {
+        return 0
+    }
+    
+    var sums: [Int] = triangle.last!
+    var i = triangle.count - 2
+    while(i >= 0) {
+        var current = triangle[i]
+        for (index, num) in current.enumerated() {
+            current[index] = num + min(sums[index], sums[index+1])
+        }
+        sums = current
+        i -= 1
+    }
+    
+    return sums[0]
+}
