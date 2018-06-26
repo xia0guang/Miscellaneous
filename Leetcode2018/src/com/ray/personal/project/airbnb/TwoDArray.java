@@ -1,4 +1,4 @@
-package com.ray.personal.project;
+package com.ray.personal.project.airbnb;
 
 import java.util.Iterator;
 import java.util.List;

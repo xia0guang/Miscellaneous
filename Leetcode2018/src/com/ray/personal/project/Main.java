@@ -1,6 +1,9 @@
 package com.ray.personal.project;
 
 
+import com.ray.personal.project.airbnb.CollatzConjecture;
+import com.ray.personal.project.airbnb.NestedIntList;
+
 public class Main {
 
     public static void main(String[] args) {

@@ -188,11 +188,11 @@
   </component>
   <component name="RunManager" selected="Application.Calculator">
     <configuration name="Calculator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.ray.personal.project.Calculator" />
+      <option name="MAIN_CLASS_NAME" value="com.ray.personal.project.airbnb.Calculator" />
       <module name="Leetcode2018" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.ray.personal.project.*" />
+          <option name="PATTERN" value="com.ray.personal.project.airbnb.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -205,11 +205,11 @@
       <ConfigurationWrapper RunnerId="Run" />
     </configuration>
     <configuration name="PalindromePair" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.ray.personal.project.PalindromePair" />
+      <option name="MAIN_CLASS_NAME" value="com.ray.personal.project.airbnb.PalindromePair" />
       <module name="Leetcode2018" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.ray.personal.project.*" />
+          <option name="PATTERN" value="com.ray.personal.project.airbnb.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
