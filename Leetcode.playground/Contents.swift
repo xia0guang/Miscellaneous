@@ -2305,6 +2305,307 @@ class Solution {
     }
 }
 
-let solution = Solution(["ab", "abc", "ac", "ace"])
+/*:
+ 
+ ### 3 Sum
+ 
+ 
+ Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+ 
+ Note:
+ 
+ The solution set must not contain duplicate triplets.
+ 
+ Example:
+ 
+ Given array nums = [-1, 0, 1, 2, -1, -4],
+ 
+ A solution set is:
+ [
+ [-1, 0, 1],
+ [-1, -1, 2]
+ ]
+ */
 
+func threeSum(_ nums: [Int]) -> [[Int]] {
+    var numsCopy = nums.sorted()
+    guard numsCopy.count >= 3 else {
+        return []
+    }
+    var rst = [[Int]]()
+    for i in 0..<numsCopy.count - 2 {
+        if i>0, numsCopy[i] == numsCopy[i-1] {
+            continue
+        }
+        var left = i+1
+        var right = numsCopy.count - 1
+        while left < right {
+            let sum = numsCopy[i] + numsCopy[left] + numsCopy[right]
+            if sum == 0 {
+                rst.append([numsCopy[i], numsCopy[left], numsCopy[right]])
+            }
+            if sum <= 0 {
+                left += 1
+                while left < right, numsCopy[left] == numsCopy[left + 1]  {
+                    print("left: \(left), ->")
+                    left += 1
+                }
+            }
+            if sum >= 0 {
+                right -= 1
+                while left < right, numsCopy[right] == numsCopy[right - 1] {
+                    print("right: \(right), <-")
+                    right -= 1
+                }
+            }
+        }
+    }
+    return rst
+}
+//print(threeSum([-1,0,1,2,-1,-4]))
 
+/*:
+ ### serialize and deserialize of binary tree
+ Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
+ 
+ Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.
+ 
+ Example:
+ 
+ You may serialize the following tree:
+ 
+ 1
+ / \
+ 2   3
+ / \
+ 4   5
+ 
+ as "[1,2,3,null,null,4,5]"
+ Clarification: The above format is the same as how LeetCode serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.
+ 
+ Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.
+ */
+
+/*:
+ ### Merge k Sorted Array
+ Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
+ 
+ Example:
+ ````
+ Input:
+ [
+ 1->4->5,
+ 1->3->4,
+ 2->6
+ ]
+ Output: 1->1->2->3->4->4->5->6
+ ````
+ */
+public class ListNode: CustomStringConvertible {
+    public var val: Int
+    public var next: ListNode?
+    public init(_ val: Int) {
+        self.val = val
+        self.next = nil
+    }
+    
+    public func insert(_ value: Int) -> ListNode {
+        self.next = ListNode(value)
+        return self.next!
+    }
+    
+    public var description: String {
+        get {
+            var str = String(val)
+            if next != nil {
+                str += " -> " + next!.description
+            }
+            return str
+        }
+    }
+}
+func mergeKLists(_ lists: [ListNode?]) -> ListNode? {
+    var nodes = lists
+    if nodes.count == 0 {return nil}
+    var head = ListNode(0)
+    var cur = head
+    var minNode: Int?
+    var minIndex: Int = -1
+    repeat {
+        minNode = nil
+        for i in 0..<nodes.count {
+            if nodes[i] == nil {
+                continue
+            }
+            
+            print("Node value: \(nodes[i]!.val)")
+            print("Min Node value: \(minNode)")
+            if minNode == nil || minNode! > nodes[i]!.val {
+                minNode = nodes[i]!.val
+                minIndex = i
+                print("find new min")
+            }
+        }
+        print("")
+        if minNode != nil {
+            nodes[minIndex] = nodes[minIndex]!.next
+            cur.next = ListNode(minNode!)
+            cur = cur.next!
+        }
+    } while minNode != nil
+    return head.next
+}
+/*
+var linked1 = ListNode(1)
+linked1.insert(4).insert(5)
+var linked2 = ListNode(1)
+linked2.insert(3).insert(4)
+var linked3 = ListNode(2)
+linked3.insert(6)
+print(mergeKLists([linked1, linked2, linked3]) ?? "nil")
+ */
+
+/*:
+ ### Sum of Distance tree
+ An undirected, connected tree with N nodes labelled 0...N-1 and N-1 edges are given.
+ 
+ The ith edge connects nodes edges[i][0] and edges[i][1] together.
+ 
+ Return a list ans, where ans[i] is the sum of the distances between node i and all other nodes.
+ 
+ Example 1:
+ 
+ Input: N = 6, edges = [[0,1],[0,2],[2,3],[2,4],[2,5]]
+ Output: [8,12,6,10,10,10]
+ Explanation:
+ Here is a diagram of the given tree:
+ 0
+ / \
+ 1   2
+ /|\
+ 3 4 5
+ We can see that dist(0,1) + dist(0,2) + dist(0,3) + dist(0,4) + dist(0,5)
+ equals 1 + 1 + 2 + 2 + 2 = 8.  Hence, answer[0] = 8, and so on.
+ Note: 1 <= N <= 10000
+ */
+
+func sumOfDistancesInTree(_ N: Int, _ edges: [[Int]]) -> [Int] {
+    var graph = [Int: [Int]]()
+    edges.forEach{ edge in
+        let s = edge[0], d = edge[1]
+        if graph[s] == nil {
+            graph[s] = Array<Int>()
+        }
+        graph[s]!.append(d)
+        if graph[d] == nil {
+            graph[d] = Array<Int>()
+        }
+        graph[d]!.append(s)
+    }
+    
+    print("Graph: \(graph)")
+    
+    var result = [Int]()
+    for i in 0..<N {
+        var sumDistance = 0
+        for j in 0..<N {
+            if i != j {
+                print("finding: \(i) -> \(j)")
+                var visited = Array(repeating: false, count: N)
+                sumDistance += distance(i, j, graph, &visited)
+                print("distance: \(sumDistance)")
+                print("")
+            }
+        }
+        result.append(sumDistance)
+    }
+    return result
+}
+
+func distance(_ a: Int, _ b: Int, _ graph: [Int:[Int]], _ visited: inout [Bool]) -> Int {
+    print("passing: \(a)")
+    guard let list = graph[a] else {
+        return -1
+    }
+
+    if list.contains(b) {return 1}
+    
+    visited[a] = true
+    for node in list {
+        if !visited[node] {
+            let d = distance(node, b, graph, &visited)
+            if d != -1 {
+                return d + 1
+            }
+        }
+    }
+    return -1
+}
+
+//print(sumOfDistancesInTree(6, [[0,1],[0,2],[2,3],[2,4],[2,5]]))
+
+/*:
+ ### Find minimum in a rotated sorted array I && II
+ 
+ Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+ 
+ (i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).
+ 
+ Find the minimum element.
+ 
+ The array may contain duplicates.
+ 
+ Example 1:
+ ````
+ Input: [1,3,5]
+ Output: 1
+ ````
+ Example 2:
+ ````
+ Input: [2,2,2,0,1]
+ Output: 0
+ ````
+ - Note:
+ 
+ This is a follow up problem to Find Minimum in Rotated Sorted Array.
+ Would allow duplicates affect the run-time complexity? How and why?
+ */
+
+func findMin(_ nums: [Int]) -> Int {
+    var left = 0, right = nums.count-1
+    while left < right-1 {
+        if nums[left] < nums[right] {
+            break
+        }
+        let mid = (left + right)/2
+        if nums[mid] > nums[left], nums[mid] > nums[right] {
+            left = mid
+        } else if nums[mid] < nums[left], nums[mid] < nums[right] {
+            right = mid
+        }
+    }
+    return min(nums[left], nums[right])
+}
+
+func findMin2(_ nums: [Int]) -> Int {
+    return findMin(nums, 0, nums.count-1)
+}
+
+func findMin(_ nums: [Int], _ left: Int, _ right: Int) -> Int {
+    if left > right {
+        return .max
+    }
+    if left == right {
+        return nums[left]
+    }
+    if nums[left] < nums[right] {
+        return nums[left]
+    }
+    
+    var mid = (left + right)/2
+    if nums[left] > nums[mid], nums[mid] > nums[right] {
+        return nums[right]
+    }
+    return min(findMin(nums, left, mid), findMin(nums, mid + 1, right))
+}
+//print(findMin2([10,10,10,-10,-10,-10,-10,-9,-9,-9,-9,-9,-9,-9,-8,-8,-8,-8,-8,-8,-8,-8,-7,-7,-7,-7,-6,-6,-6,-5,-5,-5,-4,-4,-4,-4,-3,-3,-2,-2,-2,-2,-2,-2,-2,-2,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,2,2,2,3,3,3,4,4,4,5,5,5,5,6,6,6,7,7,7,7,7,8,8,8,8,9,9,9,9,9,9,9,10,10]))
