@@ -1,27 +1,27 @@
 //: Playground - noun: a place where people can play
-import UIKit
+import Foundation
 /*:
  ### Replace Words
-
+ 
  In English, we have a concept called root, which can be followed by some other words to form another longer word - let's call this word successor. For example, the root an, followed by other, which can form another word another.
  
  Now, given a dictionary consisting of many roots and a sentence. You need to replace all the successor in the sentence with the root forming it. If a successor has many roots can form it, replace it with the root with the shortest length.
  
  You need to output the sentence after the replacement.
-
+ 
  Example:
  ````
  Input: dict = ["cat", "bat", "rat"]
  sentence = "the cattle was rattled by the battery"
  Output: "the cat was rat by the bat"
  ````
-
+ 
  1. The input will only have lower-case letters.
  1. 1 <= dict words number <= 1000
  1. 1 <= sentence words number <= 1000
  1. 1 <= root length <= 100
  1. 1 <= sentence words length <= 1000
-*/
+ */
 func replaceWordsBasicBruteForce(_ dict: [String], _ sentence: String) -> String {
     let wordSet = Set(dict)
     var words = sentence.split(separator: " ")
@@ -180,7 +180,7 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
         if map[char] != nil {
             maxLen = max(maxLen, i - left)
             print(maxLen)
-        
+            
             let leftIndex = s.index(s.startIndex, offsetBy: left)
             left = map[char]! + 1
             let newLeftIndex = s.index(s.startIndex, offsetBy: left)
@@ -267,7 +267,7 @@ func longestPalindrome(_ s: String) -> String {
  Output: 21
  ````
  - Note: Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−2^31,  2^31 − 1]. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
-
+ 
  */
 
 func reverse(_ x: Int) -> Int {
@@ -466,7 +466,7 @@ func nthUglyNumber(_ n: Int) -> [Int] {
  Input: 2
  Output: 2
  ````
-
+ 
  *Explanation*:
  
  The first beautiful arrangement is [1, 2]:
@@ -625,18 +625,18 @@ func constructArray(_ n: Int, _ k: Int) -> [Int] {
 }
 
 /*
-let seq = constructArray(50, 49)
-print(seq)
-var diffs: Set<Int> = []
-seq.enumerated().forEach { (iter) in
-    if iter.offset < seq.count - 1 {
-        diffs.insert(abs(iter.element - seq[iter.offset + 1]) )
-    }
-}
-
-print(diffs)
-print("diffs count: \(diffs.count)")
-*/
+ let seq = constructArray(50, 49)
+ print(seq)
+ var diffs: Set<Int> = []
+ seq.enumerated().forEach { (iter) in
+ if iter.offset < seq.count - 1 {
+ diffs.insert(abs(iter.element - seq[iter.offset + 1]) )
+ }
+ }
+ 
+ print(diffs)
+ print("diffs count: \(diffs.count)")
+ */
 
 /*:
  
@@ -697,9 +697,9 @@ func removeDuplicates(_ nums: inout [Int]) -> Int {
     return len
 }
 /*
-var nums = [0,0,1,1,1,2,2,3,3,4]
-print(removeDuplicates(&nums))
-print(nums)
+ var nums = [0,0,1,1,1,2,2,3,3,4]
+ print(removeDuplicates(&nums))
+ print(nums)
  */
 
 /*:
@@ -1260,11 +1260,11 @@ func findFriends(_ M:[[Int]], _ visited: inout [Bool], _ friend: Int) {
     }
 }
 /*
-print(findCircleNum([[1,0,0,1],
-                     [0,1,1,0],
-                     [0,1,1,1],
-                     [1,0,1,1]]))
-*/
+ print(findCircleNum([[1,0,0,1],
+ [0,1,1,0],
+ [0,1,1,1],
+ [1,0,1,1]]))
+ */
 
 func largestNumber(_ nums: [Int]) -> String {
     var numsSorted = nums
@@ -2456,13 +2456,13 @@ func mergeKLists(_ lists: [ListNode?]) -> ListNode? {
     return head.next
 }
 /*
-var linked1 = ListNode(1)
-linked1.insert(4).insert(5)
-var linked2 = ListNode(1)
-linked2.insert(3).insert(4)
-var linked3 = ListNode(2)
-linked3.insert(6)
-print(mergeKLists([linked1, linked2, linked3]) ?? "nil")
+ var linked1 = ListNode(1)
+ linked1.insert(4).insert(5)
+ var linked2 = ListNode(1)
+ linked2.insert(3).insert(4)
+ var linked3 = ListNode(2)
+ linked3.insert(6)
+ print(mergeKLists([linked1, linked2, linked3]) ?? "nil")
  */
 
 /*:
@@ -2527,7 +2527,7 @@ func distance(_ a: Int, _ b: Int, _ graph: [Int:[Int]], _ visited: inout [Bool])
     guard let list = graph[a] else {
         return -1
     }
-
+    
     if list.contains(b) {return 1}
     
     visited[a] = true
@@ -2609,3 +2609,207 @@ func findMin(_ nums: [Int], _ left: Int, _ right: Int) -> Int {
     return min(findMin(nums, left, mid), findMin(nums, mid + 1, right))
 }
 //print(findMin2([10,10,10,-10,-10,-10,-10,-9,-9,-9,-9,-9,-9,-9,-8,-8,-8,-8,-8,-8,-8,-8,-7,-7,-7,-7,-6,-6,-6,-5,-5,-5,-4,-4,-4,-4,-3,-3,-2,-2,-2,-2,-2,-2,-2,-2,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,2,2,2,3,3,3,4,4,4,5,5,5,5,6,6,6,7,7,7,7,7,8,8,8,8,9,9,9,9,9,9,9,10,10]))
+
+/*:
+ ### Construct Binary Tree from Preorder and Inorder Traversal
+ 
+ Given preorder and inorder traversal of a tree, construct the binary tree.
+ 
+ - Note:
+ You may assume that duplicates do not exist in the tree.
+ 
+ For example, given
+ ````
+ preorder = [3,9,20,15,7]
+ inorder = [9,3,15,20,7]
+ Return the following binary tree:
+ 
+ 3
+ / \
+ 9  20
+ /  \
+ 15   7
+ ````
+ */
+
+func buildTree(_ preorder: [Int], _ inorder: [Int]) -> TreeNode? {
+    return buildTree(preorder, 0, preorder.count-1, inorder, 0, inorder.count-1)
+}
+func buildTree(_ preorder: [Int], _ pLeft: Int, _ pRight: Int, _ inorder: [Int], _ iLeft: Int, _ iRight: Int) -> TreeNode? {
+    if preorder.count == 0 || inorder.count == 0 {
+        return nil
+    }
+    if pLeft > pRight || pRight - pLeft != iRight - iLeft {
+        return nil
+    }
+    
+    var root = TreeNode(preorder[pLeft])
+    var index = iLeft
+    for i in iLeft...iRight {
+        if inorder[i] == preorder[pLeft] {
+            index = i
+            break
+        }
+    }
+    root.left = buildTree(preorder, pLeft + 1, index - iLeft + pLeft, inorder, iLeft, index - 1)
+    root.right = buildTree(preorder, pRight - iRight + index + 1, pRight, inorder, index + 1, iRight)
+    return root
+}
+
+//print(buildTree([3,9,20,15,7], [9,3,15,20,7]) ?? "nil")
+
+/*:
+ ### Minimum Path Sum
+ Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+ 
+ Note: You can only move either down or right at any point in time.
+ 
+ Example:
+ ````
+ Input:
+ [
+ [1,3,1],
+ [1,5,1],
+ [4,2,1]
+ ]
+ Output: 7
+ ````
+ Explanation: Because the path 1→3→1→1→1 minimizes the sum.
+ */
+func minPathSum(_ grid: [[Int]]) -> Int {
+    guard grid.count > 0 else {
+        return 0
+    }
+    
+    var dp = grid
+    for i in 0..<grid.count {
+        for j in 0..<grid[i].count {
+            if i == 0, j == 0 {
+                continue
+            }
+            if i == 0 {
+                dp[i][j] += dp[i][j-1]
+                continue
+            }
+            if j == 0 {
+                dp[i][j] += dp[i-1][j]
+                continue
+            }
+            
+            dp[i][j] += min(dp[i-1][j], dp[i][j-1])
+        }
+    }
+    print(dp)
+    return dp.last!.last!
+}
+
+//print(minPathSum([[1,3,1],[1,5,1],[4,2,1]]))
+extension String {
+    public subscript(_ index: Int) -> Character {
+        return self[self.index(startIndex, offsetBy: index)]
+    }
+    
+    public subscript(_ range: Range<Int>) -> String {
+        return String(self[index(startIndex, offsetBy: range.lowerBound)..<index(startIndex, offsetBy: range.upperBound)])
+    }
+    
+    public subscript(_ range: ClosedRange<Int>) -> String {
+        return String(self[index(startIndex, offsetBy: range.lowerBound)...index(startIndex, offsetBy: range.upperBound)])
+    }
+}
+
+/*:
+ ### Group Anagrams
+ Given an array of strings, group anagrams together.
+ Example:
+ ````
+ Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
+ Output:
+ [
+ ["ate","eat","tea"],
+ ["nat","tan"],
+ ["bat"]
+ ]
+ ````
+ - Note:
+ * All inputs will be in lowercase.
+ * The order of your output does not matter.
+ */
+
+func groupAnagrams(_ strs: [String]) -> [[String]] {
+    let strsCopy = strs.map{String($0.sorted())}
+    var map: [String: [Int]] = [:]
+    strsCopy.enumerated().forEach{ iter in
+        if map[iter.element] == nil {
+            map[iter.element] = Array<Int>()
+        }
+        map[iter.element]!.append(iter.offset)
+    }
+    var result = [[String]]()
+    map.forEach{ pair in
+        result.append(pair.value.map{strs[$0]})
+    }
+    return result
+}
+
+//print(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+
+/*:
+ ### Valid Number
+ Validate if a given string is numeric.
+ 
+ Some examples:
+ ````
+ "0" => true
+ "000000" => true
+ " 0.1 " => true
+ "abc" => false
+ "1 a" => false
+ "2e10" => true
+ "0e10" => true
+ "00012" => true
+ "0 0012" => false
+ ````
+ - Note:
+ It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one.
+ */
+func isNumber(_ s: String) -> Bool {
+    if s.count == 0 {return false}
+    let str = s.trimmingCharacters(in: CharacterSet(charactersIn: " "))
+    if str.contains("e") {
+        let parts = str.split(separator: "e", maxSplits: .max, omittingEmptySubsequences: false).map{String($0)}
+        if parts.count != 2 {
+            return false
+        }
+        return isNumberNoExp(parts[0]) && isNumberNoDot(parts[1])
+    } else {
+        return isNumberNoExp(str)
+    }
+}
+func isNumberNoExp(_ s: String) -> Bool {
+    if s.count == 0 {return false}
+    if s.contains(".") {
+        let parts = s.split(separator: ".", maxSplits: .max, omittingEmptySubsequences: false).map{String($0)}
+        if parts.count == 0 {return false}
+        if parts.count == 1 {
+            return isNumberNoDot(parts[0])
+        }
+        if parts.count == 2 {
+            return isNumberNoDot(parts[0]) && isNumberNoDot(parts[1])
+        }
+        return false
+    } else {
+        return isNumberNoDot(s)
+    }
+}
+
+func isNumberNoDot(_ s: String) -> Bool {
+    if s.count == 0 {return false}
+    return s.reduce(true){$0 && $1 >= "0" && $1 <= "9"}
+}
+print(isNumber("..2"))
+print(isNumber("0"))
+print(isNumber(" 0.1"))
+print(isNumber("abc"))
+print(isNumber("1 a"))
+print(isNumber("2e10"))

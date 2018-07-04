@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="528ba195-6936-4d33-b0ec-1523a0a3dcad" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/ray/personal/project/Codec.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ray/personal/project/LongestCommonPrefix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ray/personal/project/ShortestStringCombination.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ray/personal/project/TreeNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Leetcode.playground/Contents.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Leetcode.playground/Contents.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Leetcode2018/com/ray/personal/project/AlienDictionary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Leetcode2018/com/ray/personal/project/BoggleGame$TreeNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Leetcode2018/com/ray/personal/project/BoggleGame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Leetcode2018/com/ray/personal/project/Calculator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Leetcode2018/com/ray/personal/project/CollatzConjecture.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Leetcode2018/com/ray/personal/project/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Leetcode2018/com/ray/personal/project/NestedIntList$Type.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Leetcode2018/com/ray/personal/project/NestedIntList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Leetcode2018/com/ray/personal/project/NumMatrix.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Leetcode2018/com/ray/personal/project/PalindromePair.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Leetcode2018/com/ray/personal/project/Pyramid.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Leetcode2018/com/ray/personal/project/TwoDArray.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/ray/personal/project/Main.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,18 +47,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BoggleGame.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/ray/personal/project/airbnb/BoggleGame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="PalindromePair.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ray/personal/project/airbnb/PalindromePair.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -113,7 +83,7 @@
       <file leaf-file-name="Codec.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ray/personal/project/Codec.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
+            <state relative-caret-position="900">
               <caret line="60" column="47" selection-start-line="60" selection-start-column="47" selection-end-line="60" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -122,7 +92,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LongestCommonPrefix.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LongestCommonPrefix.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/ray/personal/project/LongestCommonPrefix.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
@@ -131,11 +101,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShortestStringCombination.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ShortestStringCombination.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ray/personal/project/ShortestStringCombination.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="38" column="43" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
+            <state relative-caret-position="240">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TreeNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/ray/personal/project/TreeNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1890">
+              <caret line="126" column="76" selection-start-line="126" selection-start-column="76" selection-end-line="126" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -357,11 +336,11 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35323384" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.35323384" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24891774" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24891774" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.44527364" />
@@ -695,19 +674,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ray/personal/project/TreeNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="126" column="76" selection-start-line="126" selection-start-column="76" selection-end-line="126" selection-end-column="76" />
-          <folding>
-            <element signature="e#2391#2401#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ray/personal/project/Codec.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
+        <state relative-caret-position="900">
           <caret line="60" column="47" selection-start-line="60" selection-start-column="47" selection-end-line="60" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -715,17 +684,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ray/personal/project/ShortestStringCombination.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ray/personal/project/TreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1890">
+          <caret line="126" column="76" selection-start-line="126" selection-start-column="76" selection-end-line="126" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ray/personal/project/LongestCommonPrefix.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="43" lean-forward="true" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ray/personal/project/ShortestStringCombination.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="38" column="43" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
         </state>
       </provider>
     </entry>
