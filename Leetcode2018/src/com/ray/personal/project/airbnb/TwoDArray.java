@@ -6,15 +6,13 @@ import java.util.function.Consumer;
 
 public class TwoDArray <T> implements Iterator {
     List<List<T>> array;
-    int rowId;
-    int colId;
-    int rowCount;
+    Iterator<List<T>> rowIter;
+    Iterator<T> colIter;
 
     public TwoDArray(List<List<T>> array) {
         this.array = array;
-        rowId = 0;
-        colId = 0;
-        rowCount = array.size();
+        rowIter = array.iterator();
+        colIter = null;
     }
 
     Iterator<T> iterator() {
@@ -23,34 +21,25 @@ public class TwoDArray <T> implements Iterator {
 
     @Override
     public boolean hasNext() {
-        if(array == null || array.isEmpty() ||
-                rowId >= rowCount || array.get(rowId) == null || array.get(rowId).isEmpty() ||
-                colId >= array.get(rowId).size()) return false;
-        return true;
+        while((this.colIter == null || !this.colIter.hasNext()) && rowIter.hasNext()) {
+            this.colIter = rowIter.next().iterator();
+        }
+        return this.colIter != null && this.colIter.hasNext();
     }
 
     @Override
     public T next() {
-        if(hasNext()) {
-            T e = this.array.get(rowId).get(colId);
-            while (rowId < rowCount && array.get(rowId) != null && !array.get(rowId).isEmpty()) {
-                List<T> list = array.get(rowId);
-                colId++;
-                if(colId >= list.size()) {
-                    colId = 0;
-                    rowId++;
-                }
-            }
-
-            return e;
-        } else {
-            return null;
-        }
+        return this.colIter.next();
     }
 
     @Override
     public void remove() {
-
+        while((this.colIter == null || !this.colIter.hasNext()) && rowIter.hasNext()) {
+            this.colIter = rowIter.next().iterator();
+        }
+        if (this.colIter != null) {
+            this.colIter.remove();
+        }
     }
 
     @Override
