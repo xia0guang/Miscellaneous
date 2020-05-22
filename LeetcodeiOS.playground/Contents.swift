@@ -2807,9 +2807,11 @@ func isNumberNoDot(_ s: String) -> Bool {
     if s.count == 0 {return false}
     return s.reduce(true){$0 && $1 >= "0" && $1 <= "9"}
 }
+/*
 print(isNumber(".2"))
 print(isNumber("0"))
 print(isNumber(" 0.1"))
 print(isNumber("abc"))
 print(isNumber("1 a"))
 print(isNumber("2e10"))
+ */

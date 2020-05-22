@@ -37,6 +37,8 @@ extension ViewController: UIHorizontalTableViewDataSource {
         if cell == nil {
             cell = UIHorizontalTableViewCell(reusedIdentifier)
             cell!.label?.text = "a\n\(self.dataNums[indexPath.columns])"
+            cell!.label?.backgroundColor = .black
+            cell!.label?.textColor = .white
         }
         return cell!
     }
