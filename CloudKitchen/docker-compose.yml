@@ -1,0 +1,9 @@
+version: "3"
+services:
+  cloudkitchen:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "cloudkitchen"
+    volumes:
+      - ./:/cloudkitchen
