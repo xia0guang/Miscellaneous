@@ -105,6 +105,13 @@ extension Dictionary {
     }
 }
 
+infix operator += : AssignmentPrecedence
+public func +=(left: inout Character, right: Int) {
+    if let value = left.asciiValue {
+        left = Character(UnicodeScalar(value + UInt8(right)))
+    }
+}
+
 class TreeNode: Hashable {
     static func == (lhs: TreeNode, rhs: TreeNode) -> Bool {
         let a = lhs.val == rhs.val
@@ -2972,6 +2979,8 @@ So  function 0 spends 2 + 1 = 3 units of total time executing, and function 1 sp
         isSymmetric(left?.left, right?.right, &result)
         isSymmetric(left?.right, right?.left, &result)
     }
+
+
 }
 
 
